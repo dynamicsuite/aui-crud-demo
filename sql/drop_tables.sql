@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS `aui_crud_demo`;
