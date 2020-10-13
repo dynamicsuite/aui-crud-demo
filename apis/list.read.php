@@ -36,7 +36,7 @@ try {
         ->select([
             'storable_id AS id',      // Each returned record MUST have an "id"
             'name AS title',          // "group" components must have a "title"
-            'description AS subtext'  // "group" components must have a "subtext"
+            'description AS subtext'
         ])
         ->from('aui_crud_demo');
 

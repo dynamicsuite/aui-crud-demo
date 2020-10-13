@@ -1,7 +1,5 @@
 <style>
     #crud {max-width: 1000px}
-    .aui.crud .form .body .aui.input {margin-bottom: 1rem}
-    .aui.crud .form .body p {margin: 1rem 0}
 </style>
 <div id="crud">
 
@@ -20,18 +18,22 @@
 
         <!-- Form page -->
         <template #form="{ form, error, overlay }">
-            <aui-input
-                label="name"
-                :failure="error.name"
-                :disabled="overlay"
-                v-model="form.name"
-            ></aui-input>
-            <aui-input
-                label="description"
-                :failure="error.description"
-                :disabled="overlay"
-                v-model="form.description"
-            ></aui-input>
+
+            <div class="col-2">
+                <aui-input
+                    label="name"
+                    :failure="error.name"
+                    :disabled="overlay"
+                    v-model="form.name"
+                ></aui-input>
+                <aui-input
+                    label="description"
+                    :failure="error.description"
+                    :disabled="overlay"
+                    v-model="form.description"
+                ></aui-input>
+            </div>
+
         </template>
 
         <!-- Test page -->
