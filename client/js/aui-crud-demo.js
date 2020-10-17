@@ -9,11 +9,23 @@ new Vue({
             form_api_update: 'crud:form.update',
             form_api_delete: 'crud:form.delete',
             form_storable_key: 'storable_id',
-            list_type: 'group',
+            list_type: 'table',
             list_table_columns: {
-                id: 'Storable ID',
+                id: {
+                    label: 'Storable ID',
+                    format: value => {
+                        return value;
+                    },
+                    hide_on_ipad: true
+                },
                 title: 'Name',
-                subtext: 'Description'
+                subtext: {
+                    label: 'Description',
+                    format: value => {
+                        return value;
+                    },
+                    hide_on_mobile: true
+                }
             },
             fields: [
                 'storable_id',
