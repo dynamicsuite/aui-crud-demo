@@ -27,11 +27,6 @@ new Vue({
                     hide_on_mobile: true
                 }
             },
-            fields: [
-                'storable_id',
-                'name',
-                'description'
-            ],
             views: [
                 {
                     name: 'form',
@@ -43,6 +38,16 @@ new Vue({
                     show_action_bar: false
                 }
             ]
-        }
+        },
+        form: {
+            storable_id: null,
+            name: null,
+            description: null
+        },
+        feedback: {
+            name: null,
+            description: null
+        },
+        calling: false
     }
 });
