@@ -11,7 +11,7 @@ new Vue({
             form_storable_key: 'storable_id',
             list_type: 'table',
             list_table_columns: {
-                id: {
+                storable_id: {
                     label: 'Storable ID',
                     format: value => {
                         return value;
@@ -27,17 +27,13 @@ new Vue({
                     hide_on_mobile: true
                 }
             },
-            views: [
-                {
-                    name: 'form',
-                    tab_name: 'Form'
-                },
-                {
-                    name: 'Test',
-                    tab_name: 'Test Page',
+            views: {
+                form: 'Form',
+                test: {
+                    name: 'Test Page',
                     show_action_bar: false
                 }
-            ]
+            }
         },
         form: {
             storable_id: null,

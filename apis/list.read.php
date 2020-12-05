@@ -34,9 +34,9 @@ try {
      */
     $list = (new Query())
         ->select([
-            'storable_id AS id',      // Each returned record MUST have an "id"
-            'name AS title',          // "group" components must have a "title"
-            'description AS subtext'
+            'storable_id',
+            'name AS title',         // "group" components must have a "title"
+            'description AS subtext' // "group" may also have a "subtext"
         ])
         ->from('aui_crud_demo');
 
@@ -54,7 +54,6 @@ try {
          * This must map the actual column names "key" to the returned table alias (see $list above).
          */
         ->sortMap([
-            'storable_id' => 'id',
             'name' => 'title',
             'description' => 'subtext'
         ])
