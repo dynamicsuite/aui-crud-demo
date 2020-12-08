@@ -38,7 +38,7 @@ try {
             'description'
         ])
         ->from('aui_crud_demo')
-        ->where('storable_id', '=', $_POST['id'])
+        ->where('storable_id', '=', $_POST['storable_id'])
         ->execute(true);
 
     /**
