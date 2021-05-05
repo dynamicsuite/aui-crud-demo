@@ -1,1 +1,1 @@
-## Dynamic Suite AUI CRUD Demo
+Dynamic Suite AUI CRUD Demo
