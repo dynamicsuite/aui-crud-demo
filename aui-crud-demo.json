@@ -4,24 +4,29 @@
   "version": "2.0.0",
   "description": "Demo for the AUI CRUD component and server library",
   "license": "GPLv3",
+  "overlay_actions": {
+    "search": {
+      "component": "aui-input"
+    }
+  },
   "apis": {
-    "crud:list.read": {
+    "crud.list.read": {
       "entry": "apis/list.read.php",
       "public": true
     },
-    "crud:form.read": {
+    "crud.form.read": {
       "entry": "apis/form.read.php",
       "public": true
     },
-    "crud:form.create": {
+    "crud.form.create": {
       "entry": "apis/form.create.php",
       "public": true
     },
-    "crud:form.update": {
+    "crud.form.update": {
       "entry": "apis/form.update.php",
       "public": true
     },
-    "crud:form.delete": {
+    "crud.form.delete": {
       "entry": "apis/form.delete.php",
       "public": true
     }
@@ -32,11 +37,7 @@
       "title": "AUI Crud Demo",
       "public": true,
       "nav_icon": "fas fa-th-large",
-      "nav_name": "AUI CRUD Demo",
-      "hide_user_actions": true,
-      "js": [
-        "js/aui-crud-demo.min.js"
-      ]
+      "nav_name": "AUI CRUD Demo"
     }
   }
 }
