@@ -1,70 +1,44 @@
 <?php
 /**
- * Read the list for the component.
+ * This file is part of the Dynamic Suite AUI CRUD demo package.
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation version 3.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software Foundation,
- * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
- *
- * @package aui-crud-demo
+ * @package DynamicSuite\AuiCrudDemo
  * @author Grant Martin <commgdog@gmail.com>
- * @copyright  2020 Dynamic Suite Team
- * @noinspection PhpUnused
+ * @copyright 2021 Dynamic Suite Team
+ * @noinspection PhpUnhandledExceptionInspection
  */
 
-namespace DynamicSuite\Pkg\AuiCrudDemo;
+namespace DynamicSuite\AuiCrudDemo;
 use DynamicSuite\API\Response;
+use DynamicSuite\AUI\CrudRead;
 use DynamicSuite\Database\Query;
-use DynamicSuite\Pkg\Aui\CrudRead;
-use Exception;
 
-try {
+/**
+ * Set up the database read.
+ */
+$list = (new Query())
+    ->select([
+        'storable_id',
+        'name AS title',
+        'description AS subtext'
+    ])
+    ->from('aui_crud_demo');
 
-    /**
-     * The CRUD read takes a query for an argument, build out how your data will be fetched.
-     */
-    $list = (new Query())
-        ->select([
-            'storable_id',
-            'name AS title',         // "group" components must have a "title"
-            'description AS subtext' // "group" may also have a "subtext"
-        ])
-        ->from('aui_crud_demo');
+/**
+ * Read the data.
+ */
+$crud = (new CrudRead($list))
+    ->searchColumns(['name', 'description'])
+    ->sortMap([
+        'name' => 'title',
+        'description' => 'subtext'
+    ])
+    ->execute();
 
-    /**
-     * Set up the read.
-     */
-    $crud = (new CrudRead($list))
-        /**
-         * Columns you want the search to run on.
-         */
-        ->searchColumns(['name', 'description'])
-        /**
-         * Sort map.
-         *
-         * This must map the actual column names "key" to the returned table alias (see $list above).
-         */
-        ->sortMap([
-            'name' => 'title',
-            'description' => 'subtext'
-        ])
-        ->execute();
-
-    /**
-     * Return the component data.
-     */
-    return new Response('OK', 'Success', $crud);
-
-} catch (Exception $exception) {
-    error_log($exception->getMessage());
-    return new Response('SERVER_ERROR', 'A server error has occurred');
-}
+/**
+ * Return the data.
+ */
+return new Response('OK', 'Success', $crud);
