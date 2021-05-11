@@ -28,10 +28,16 @@
   },
   "views": {
     "/aui-crud-demo": {
-      "entry": "views/aui-crud-demo.html",
+      "entry": "vue://aui-crud-demo-view",
       "title": "AUI Crud Demo",
       "public": true,
-      "nav_icon": "fas fa-th-large",
+      "js": [
+        "js/aui-crud-demo.min.js"
+      ],
+      "css": [
+        "css/aui-crud-demo.min.css"
+      ],
+      "nav_icon": "fas fa-star",
       "nav_name": "AUI CRUD Demo"
     }
   }
