@@ -39,6 +39,6 @@ $crud = (new CrudRead($list))
     ->execute();
 
 /**
- * Return the data.
+ * OK response.
  */
 return new Response('OK', 'Success', $crud);

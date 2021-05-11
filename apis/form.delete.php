@@ -1,48 +1,30 @@
 <?php
 /**
- * API to delete a storable.
+ * This file is part of the Dynamic Suite AUI CRUD demo package.
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation version 3.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software Foundation,
- * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
- *
- * @package aui-crud-demo
+ * @package DynamicSuite\AuiCrudDemo
  * @author Grant Martin <commgdog@gmail.com>
- * @copyright  2020 Dynamic Suite Team
- * @noinspection PhpUnused
+ * @copyright 2021 Dynamic Suite Team
+ * @noinspection PhpUnhandledExceptionInspection
  */
 
-namespace DynamicSuite\Pkg\AuiCrudDemo;
+namespace DynamicSuite\AuiCrudDemo;
 use DynamicSuite\API\Response;
 use DynamicSuite\Database\Query;
-use Exception;
 
-try {
+/**
+ * Delete the storable.
+ */
+(new Query())
+    ->delete()
+    ->from('aui_crud_demo')
+    ->where('storable_id', '=', $_POST['storable_id'])
+    ->execute();
 
-    /**
-     * Delete the storable
-     */
-   (new Query())
-        ->delete()
-        ->from('aui_crud_demo')
-        ->where('storable_id', '=', $_POST['storable_id'])
-        ->execute();
-
-    /**
-     * Just return OK
-     */
-    return new Response('OK', 'Success');
-
-} catch (Exception $exception) {
-    error_log($exception->getMessage());
-    return new Response('SERVER_ERROR', 'A server error has occurred');
-}
+/**
+ * OK response.
+ */
+return new Response('OK', 'Success');
