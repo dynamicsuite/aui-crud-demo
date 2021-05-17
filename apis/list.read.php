@@ -22,8 +22,7 @@ use DynamicSuite\Database\Query;
 $list = (new Query())
     ->select([
         'storable_id',
-        '"SOM" AS source',
-        'name as title',
+        'name',
         'description'
     ])
     ->from('aui_crud_demo');

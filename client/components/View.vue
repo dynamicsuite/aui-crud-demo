@@ -6,7 +6,7 @@
     :feedback.sync="feedback"
     class="ds-container docs-container primary"
   >
-    <template #form="{overlay}">
+    <template #form="{ overlay }">
       <aui-input
         label="Name"
         :disabled="overlay"
@@ -14,7 +14,7 @@
         v-model="form.name"
       />
       <aui-input
-        label="IP Address"
+        label="Description"
         :disabled="overlay"
         :failure="feedback.description"
         v-model="form.description"
@@ -29,14 +29,13 @@ export default {
     return {
       options: {
         storable_key: 'storable_id',
-        list_title: 'User Logins',
+        list_title: 'AUI CRUD Demo',
         list_read_api: 'crud.list.read',
         list_type: 'table',
         list_table_column_names: {
           storable_id: 'ID',
-          source: 'Source',
-          title: 'Name',
-          description: 'IP Address'
+          name: 'Name',
+          description: 'Description'
         },
         list_table_storage_key: 'aui_crud_demo',
         form_create_api: 'crud.form.create',
@@ -58,8 +57,3 @@ export default {
   }
 }
 </script>
-
-<style lang="sass">
-.test
-  display: inline-flex
-</style>
