@@ -1,47 +1,25 @@
 <template>
   <aui-crud
     v-bind="options"
+    :calling.sync="calling"
     :form.sync="form"
     :feedback.sync="feedback"
-    :calling.sync="calling"
     class="ds-container docs-container primary"
   >
-
-    <!-- List title -->
-    <template #list-title>Test List</template>
-
-    <!-- List buttons -->
-    <template #list-buttons>
-      <aui-button>
-        <i class="fas fa-table-tennis" />
-      </aui-button>
+    <template #form="{overlay}">
+      <aui-input
+        label="Name"
+        :disabled="overlay"
+        :failure="feedback.name"
+        v-model="form.name"
+      />
+      <aui-input
+        label="IP Address"
+        :disabled="overlay"
+        :failure="feedback.description"
+        v-model="form.description"
+      />
     </template>
-
-    <!-- Form page -->
-    <template #form="{ overlay }">
-
-      <div class="col-2">
-        <aui-input
-          label="name"
-          :failure="feedback.name"
-          :disabled="overlay"
-          v-model="form.name"
-        />
-        <aui-input
-          label="description"
-          :failure="feedback.description"
-          :disabled="overlay"
-          v-model="form.description"
-        />
-      </div>
-
-    </template>
-
-    <!-- Test page -->
-    <template #test>
-      <p>I'm on the test page!</p>
-    </template>
-
   </aui-crud>
 </template>
 
@@ -50,38 +28,23 @@ export default {
   data() {
     return {
       options: {
-        list_api_read: 'crud.list.read',
-        form_api_read: 'crud.form.read',
-        form_api_create: 'crud.form.create',
-        form_api_update: 'crud.form.update',
-        form_api_delete: 'crud.form.delete',
-        form_storable_key: 'storable_id',
+        storable_key: 'storable_id',
+        list_title: 'User Logins',
+        list_read_api: 'crud.list.read',
         list_type: 'table',
-        list_table_columns: {
-          storable_id: {
-            label: 'Storable ID',
-            format: value => {
-              return value;
-            },
-            hide_on_ipad: true
-          },
+        list_table_column_names: {
+          storable_id: 'ID',
+          source: 'Source',
           title: 'Name',
-          subtext: {
-            label: 'Description',
-            format: value => {
-              return value;
-            },
-            hide_on_mobile: true
-          }
+          description: 'IP Address'
         },
-        views: {
-          form: 'Form',
-          test: {
-            name: 'Test Page',
-            show_action_bar: false
-          }
-        }
+        list_table_storage_key: 'aui_crud_demo',
+        form_create_api: 'crud.form.create',
+        form_read_api: 'crud.form.read',
+        form_update_api: 'crud.form.update',
+        form_delete_api: 'crud.form.delete'
       },
+      calling: false,
       form: {
         storable_id: null,
         name: null,
@@ -90,9 +53,13 @@ export default {
       feedback: {
         name: null,
         description: null
-      },
-      calling: false
+      }
     };
   }
 }
 </script>
+
+<style lang="sass">
+.test
+  display: inline-flex
+</style>

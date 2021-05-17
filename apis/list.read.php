@@ -22,8 +22,9 @@ use DynamicSuite\Database\Query;
 $list = (new Query())
     ->select([
         'storable_id',
-        'name AS title',
-        'description AS subtext'
+        '"SOM" AS source',
+        'name as title',
+        'description'
     ])
     ->from('aui_crud_demo');
 
@@ -32,10 +33,6 @@ $list = (new Query())
  */
 $crud = (new CrudRead($list))
     ->searchColumns(['name', 'description'])
-    ->sortMap([
-        'name' => 'title',
-        'description' => 'subtext'
-    ])
     ->execute();
 
 /**

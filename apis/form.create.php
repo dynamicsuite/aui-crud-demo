@@ -13,8 +13,8 @@
 
 namespace DynamicSuite\AuiCrudDemo;
 use DynamicSuite\API\Response;
+use DynamicSuite\AUI\CrudPostValidation;
 use DynamicSuite\Database\Query;
-use DynamicSuite\Aui\CrudPostValidation;
 
 /**
  * Validate for length errors in the given data.
