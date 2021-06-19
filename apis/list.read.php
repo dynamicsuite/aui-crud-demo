@@ -31,7 +31,7 @@ $list = (new Query())
  * Read the data.
  */
 $crud = (new CrudRead($list))
-    ->searchColumns(['name', 'description'])
+    ->filterColumns(['name', 'description'])
     ->execute();
 
 /**
