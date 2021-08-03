@@ -1,56 +1,38 @@
 <?php
 /**
- * API to read a storable by ID.
+ * This file is part of the Dynamic Suite AUI CRUD demo package.
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation version 3.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software Foundation,
- * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
- *
- * @package aui-crud-demo
+ * @package DynamicSuite\AuiCrudDemo
  * @author Grant Martin <commgdog@gmail.com>
- * @copyright  2020 Dynamic Suite Team
- * @noinspection PhpUnused
+ * @copyright 2021 Dynamic Suite Team
+ * @noinspection PhpUnhandledExceptionInspection
  */
 
-namespace DynamicSuite\Pkg\AuiCrudDemo;
+namespace DynamicSuite\AuiCrudDemo;
 use DynamicSuite\API\Response;
 use DynamicSuite\Database\Query;
-use Exception;
 
-try {
+/**
+ * Read the storable.
+ */
+$storable = (new Query())
+    ->select([
+        'storable_id',
+        'name',
+        'description'
+    ])
+    ->from('aui_crud_demo')
+    ->where('storable_id', '=', $_POST['storable_id'])
+    ->execute(fetch_single: true);
 
-    /**
-     * Read the storable.
-     */
-    $storable = (new Query())
-        ->select([
-            'storable_id',
-            'name',
-            'description'
-        ])
-        ->from('aui_crud_demo')
-        ->where('storable_id', '=', $_POST['id'])
-        ->execute(true);
-
-    /**
-     * Return the storable, or some other error.
-     */
-    if (!$storable) {
-        return new Response('NOT_FOUND', 'Storable not found');
-    } else {
-        return new Response('OK', 'Success', $storable);
-    }
-
-} catch (Exception $exception) {
-    error_log($exception->getMessage());
-    return new Response('SERVER_ERROR', 'A server error has occurred');
+/**
+ * Return the storable, or some other error.
+ */
+if (!$storable) {
+    return new Response('NOT_FOUND', 'Storable not found');
+} else {
+    return new Response('OK', 'Success', $storable);
 }
